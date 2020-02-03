@@ -19,7 +19,7 @@ public class BookController {
     }
 
     @GetMapping
-    public List<Book> getBooks(@RequestParam String author){
+    public List<Book> getBooks(@RequestParam(required = false) String author){
         if(author != null){
             return this.bookService.findByAuthor(author);
         }
@@ -28,7 +28,7 @@ public class BookController {
     
 
     @GetMapping("/{id}")
-    public Book getAuthor(@PathVariable(required = false) String id){
+    public Book getAuthor(@PathVariable String id){
         return this.bookService.findById(id);
     }
 
