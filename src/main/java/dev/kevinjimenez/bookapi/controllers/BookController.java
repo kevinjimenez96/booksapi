@@ -28,7 +28,7 @@ public class BookController {
     
 
     @GetMapping("/{id}")
-    public Book getAuthor(@PathVariable String id){
+    public Book getAuthor(@PathVariable(required = false) String id){
         return this.bookService.findById(id);
     }
 
