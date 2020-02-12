@@ -11,7 +11,7 @@ import java.util.List;
 public class Book {
     private String id;
     private int isbn;
-    private String  title;
+    private String title;
     private String genre;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate publication;
@@ -20,8 +20,7 @@ public class Book {
     private List<Comment> comments;
     private Author author;
 
-
-    public Book(){
+    public Book() {
 
     }
 
@@ -34,12 +33,12 @@ public class Book {
         this.synopsis = bookDTO.getSynopsis();
         this.score = bookDTO.getScore();
         this.comments = new ArrayList<Comment>();
-        if(bookDTO.getComments() != null) {
+        if (bookDTO.getComments() != null) {
             for (CommentDTO commentDTO : bookDTO.getComments()) {
                 this.comments.add(new Comment(commentDTO));
             }
         }
-        this.author = new Author(bookDTO.getAuthor()) ;
+        this.author = new Author(bookDTO.getAuthor());
     }
 
     public String getId() {
