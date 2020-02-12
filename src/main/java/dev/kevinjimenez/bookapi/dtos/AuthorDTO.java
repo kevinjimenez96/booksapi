@@ -1,19 +1,30 @@
 package dev.kevinjimenez.bookapi.dtos;
 
 import dev.kevinjimenez.bookapi.model.Author;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
-@Document(collection = "authors")
+@Entity(name="authors")
 public class AuthorDTO {
     @Id
-    private String id;
+    @GeneratedValue
+    private int id;
     private String name;
     private LocalDate birthday;
     private LocalDate deathDate;
     private int score;
+    @OneToMany(mappedBy = "author")
+    private List<BookDTO> books;
+
+    public List<BookDTO> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<BookDTO> books) {
+        this.books = books;
+    }
 
     public AuthorDTO(){
 
@@ -32,11 +43,11 @@ public class AuthorDTO {
         this.name = name;
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

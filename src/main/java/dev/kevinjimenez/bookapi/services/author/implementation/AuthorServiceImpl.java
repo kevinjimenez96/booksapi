@@ -7,10 +7,12 @@ import dev.kevinjimenez.bookapi.services.author.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Service
 public class AuthorServiceImpl implements AuthorService {
     private AuthorRepository authorRepository;
@@ -31,7 +33,7 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
-    public Author findById(String id) {
+    public Author findById(int id) {
         Optional<AuthorDTO> optionalAuthorDTO = authorRepository.findById(id);
         Author author;
         author = optionalAuthorDTO.map(Author::new).orElse(null);
@@ -41,6 +43,7 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public void save(Author author) {
         authorRepository.save(new AuthorDTO(author));
+
     }
 
     @Override

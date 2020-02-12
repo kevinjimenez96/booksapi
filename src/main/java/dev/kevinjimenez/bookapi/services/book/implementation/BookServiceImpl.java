@@ -9,10 +9,12 @@ import dev.kevinjimenez.bookapi.services.book.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Service
 public class BookServiceImpl implements BookService {
     private BookRepository bookRepository;
@@ -39,7 +41,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public List<Book> findByAuthor(String author) {
+    public List<Book> findByAuthor(int author) {
         AuthorDTO authorDTO = new AuthorDTO(this.authorService.findById(author));
         List<BookDTO> bookDTOS = this.bookRepository.findByAuthor(authorDTO);
         List<Book> books = new ArrayList<>();
@@ -50,7 +52,7 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    public Book findById(String id) {
+    public Book findById(int id) {
         Optional<BookDTO> optionalBookDTO = this.bookRepository.findById(id);
         Book book;
         book = optionalBookDTO.map(Book::new).orElse(null);

@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface AuthorService {
     public List<Author> find();
-    public Author findById(String id);
+    public Author findById(int id);
     public void save(Author author);
     public void delete(Author author);
 }

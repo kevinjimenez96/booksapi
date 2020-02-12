@@ -24,19 +24,18 @@ public class AuthorController {
     }
 
     @GetMapping("/{id}")
-    public Author getAuthor(@PathVariable String id){
+    public Author getAuthor(@PathVariable int id){
         return this.authorService.findById(id);
     }
 
     @PostMapping
-    @PutMapping
     public Author postAuthor(@RequestBody(required = true) Author author){
         this.authorService.save(author);
         return author;
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAuthor(@PathVariable String id){
+    public void deleteAuthor(@PathVariable int id){
         Author author = this.authorService.findById(id);
         if (author != null){
             this.authorService.delete(author);

@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface BookService {
     public List<Book> find();
-    public List<Book> findByAuthor(String author);
-    public Book findById(String id);
+    public List<Book> findByAuthor(int author);
+    public Book findById(int id);
     public void save(Book book);
     public void delete(Book book);
 }

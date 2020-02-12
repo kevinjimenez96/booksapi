@@ -2,18 +2,29 @@ package dev.kevinjimenez.bookapi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import dev.kevinjimenez.bookapi.dtos.AuthorDTO;
+import dev.kevinjimenez.bookapi.dtos.BookDTO;
 
 import java.time.LocalDate;
+import java.util.List;
 
 
 public class Author {
-    private String id;
+    private int id;
     private String name;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate birthday;
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate deathDate;
     private int score;
+    private List<Book> books;
+
+    public List<Book> getBooks() {
+        return books;
+    }
+
+    public void setBooks(List<Book> books) {
+        this.books = books;
+    }
 
     public Author(){
 
@@ -25,13 +36,14 @@ public class Author {
         this.birthday = authorDTO.getBirthday();
         this.deathDate = authorDTO.getDeathDate();
         this.score = authorDTO.getScore();
+        this.books = authorDTO.getBooks();
     }
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 

@@ -2,14 +2,10 @@ package dev.kevinjimenez.bookapi.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import dev.kevinjimenez.bookapi.dtos.BookDTO;
-import dev.kevinjimenez.bookapi.dtos.CommentDTO;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Book {
-    private String id;
     private int isbn;
     private String title;
     private String genre;
@@ -17,7 +13,6 @@ public class Book {
     private LocalDate publication;
     private String synopsis;
     private int score;
-    private List<Comment> comments;
     private Author author;
 
     public Book() {
@@ -25,28 +20,13 @@ public class Book {
     }
 
     public Book(BookDTO bookDTO) {
-        this.id = bookDTO.getId();
         this.isbn = bookDTO.getIsbn();
         this.title = bookDTO.getTitle();
         this.genre = bookDTO.getGenre();
         this.publication = bookDTO.getPublication();
         this.synopsis = bookDTO.getSynopsis();
         this.score = bookDTO.getScore();
-        this.comments = new ArrayList<Comment>();
-        if (bookDTO.getComments() != null) {
-            for (CommentDTO commentDTO : bookDTO.getComments()) {
-                this.comments.add(new Comment(commentDTO));
-            }
-        }
         this.author = new Author(bookDTO.getAuthor());
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public int getIsbn() {
@@ -95,14 +75,6 @@ public class Book {
 
     public void setScore(int score) {
         this.score = score;
-    }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
     }
 
     public Author getAuthor() {

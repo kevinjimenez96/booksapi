@@ -1,7 +1,6 @@
 package dev.kevinjimenez.bookapi.dtos;
 
 import dev.kevinjimenez.bookapi.model.Comment;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 
 public class CommentDTO {
 

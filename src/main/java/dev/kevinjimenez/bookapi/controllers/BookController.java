@@ -19,8 +19,8 @@ public class BookController {
     }
 
     @GetMapping
-    public List<Book> getBooks(@RequestParam(required = false) String author){
-        if(author != null){
+    public List<Book> getBooks(@RequestParam(required = false) int author){
+        if(author != 0){
             return this.bookService.findByAuthor(author);
         }
         return this.bookService.find();
@@ -28,7 +28,7 @@ public class BookController {
     
 
     @GetMapping("/{id}")
-    public Book getAuthor(@PathVariable String id){
+    public Book getAuthor(@PathVariable int id){
         return this.bookService.findById(id);
     }
 
@@ -40,7 +40,7 @@ public class BookController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAuthor(@PathVariable String id){
+    public void deleteAuthor(@PathVariable int id){
         Book book = this.bookService.findById(id);
         if (book != null){
             this.bookService.delete(book);
